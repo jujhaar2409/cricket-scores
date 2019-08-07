@@ -1,11 +1,38 @@
+import numpy as np
 from tkinter import *
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 window = Tk()
 window.title('Cricket Scores')
 window.configure(background = 'white')
+
+# # libraries
+
+# # Fake dataset
+# height = [3, 12, 5, 18, 45]
+# bars = ('A', 'B', 'C', 'D', 'E')
+# y_pos = np.arange(len(bars))
+
+# # Create bars and choose color
+# plt.bar(y_pos, height, color=(0.5, 0.1, 0.5, 0.6))
+
+# # Add title and axis names
+# plt.title('My title')
+# plt.xlabel('categories')
+# plt.ylabel('values')
+
+# # Limits for the Y axis
+# plt.ylim(0, 60)
+
+# # Create names
+# plt.xticks(y_pos, bars)
+
+# # Show graphic
+# plt.show()
+
 
 # name_sort()
 # runs_sort()
@@ -45,9 +72,6 @@ def click1():
 	# for i in range(len(wins)):
 	# 	loses.append(matches_played[i] - wins[i])
 	# 	points.append(2*wins[i])
-
-	def create_list(data):
-		return
 
 	def teams_sort(data):
 		data.sort_values("POINTS", axis = 0, ascending = False, inplace = True, na_position ='last')
@@ -121,6 +145,84 @@ def click1():
 
 	output.insert(END,s1)
 
+
+#todo : Complete CLick2 function to show pyplot graphs
+
+def click2():
+	def graph_(x, y, xl, yl):
+		# # libraries
+
+		# # Fake dataset
+		height = list(int(i) for i in y)
+		bars = x
+		y_pos = np.arange(len(bars))
+
+		# # Create bars and choose color
+		plt.bar(y_pos, height)
+
+		# # Add title and axis names
+		# plt.title(entered_text)
+
+		# # Limits for the Y axis
+		plt.ylim(0, max(height)*6/5)
+
+		# # Create names
+		plt.xticks(y_pos, bars)
+		plt.xlabel(xl)
+		plt.ylabel(yl)
+		# # Show graphic
+		plt.show()
+
+	def teams_sort(data):
+		data.sort_values("POINTS", axis=0, ascending=False,
+		                 inplace=True, na_position='last')
+		return (data.to_string(index=False))
+	def runs_sort(data):
+		data.sort_values("RUNS", axis = 0, ascending = False, inplace = True, na_position ='last')
+		return (data.to_string(index=False))
+	def wickets_sort(data):
+		data.sort_values("WICKETS", axis = 0, ascending = False, inplace = True, na_position ='last')
+		return (data.to_string(index=False))
+	y = []
+	x = []
+	dir = dir = os.path.dirname(__file__)
+	runs_ = pd.ExcelFile(os.path.join(dir, 'runs.xlsx'))
+	wickets_ = pd.ExcelFile(os.path.join(dir,'wickets.xlsx'))
+	teams_ = pd.ExcelFile(os.path.join(dir,'teams.xlsx'))
+
+	# Load the excel_file's Sheet1 as a dataframe
+	teams = teams_.parse('Sheet1')
+	wickets = wickets_.parse('Sheet1')
+	runs = runs_.parse('Sheet1')
+
+	entered_text = text.get()
+
+	if entered_text == 'runs':
+		data = runs_sort(runs)
+		data = data.split('\n')
+		for i in range(1,len(data)):
+			l = data[i].split()
+			x.append(l[0])
+			y.append(l[1])
+		graph_(x, y, 'Players', 'Runs')
+	elif entered_text == 'wickets':
+		data = wickets_sort(wickets)
+		data = data.split('\n')
+		for i in range(1,len(data)):
+			l = data[i].split()
+			x.append(l[0])
+			y.append(l[1])
+		graph_(x, y, 'Players', 'Wickets')
+	elif entered_text == 'teams':
+		data = teams_sort(teams)
+		data = data.split('\n')
+		for i in range(1,len(data)):
+			l = data[i].split()
+			x.append(l[0])
+			y.append(l[1])
+		graph_(x,y,'Teams','Points')
+
+
 # def click():
 # 	players = ['Virat', 'Rohit', 'Dhoni', 'Dhawan']
 # 	scores = [100, 150, 128, 40]
@@ -135,14 +237,14 @@ def click1():
 # 	else:
 # 		Label(window, text=' Please give some other input ', fg='black', bg='white', font='ariel').grid(row=8 , column=3, sticky=W)
 
-Label (window, text = 'Welcome to the Cricket score board' ,fg = 'black',bg = 'white', font = 'ariel' ).grid(row = 1 , column = 6 , sticky= N )
+Label (window, text = 'Welcome to the Cricket score board' ,fg = 'black',bg = 'white', font = 'ariel' ).grid(row = 0 , column = 0, columnspan = 4 , sticky= N )
 text = Entry(window , width = 20 , bg = 'light gray')
-text.grid(row = 3, column = 6, sticky = N)
-Button(window , text = 'ENTER',width = 20 , command = click1). grid (row = 4, column  = 6, sticky = N)
-Label (window, text = 'SCORES' ,fg = 'black',bg = 'white', font = 'ariel' ).grid(row = 6 , column = 6 , sticky= N )
+text.grid(row = 1, column = 1,columnspan = 2, sticky = N)
+Button(window , text = 'TABLE',width = 20 , command = click1). grid (row = 3, column  = 1, sticky = E)
+Button(window , text = 'GRAPH',width = 20 , command = click2). grid (row = 3, column  = 2, sticky = W)
 
 output = Text(window, width = 60 , height = 10 , wrap = WORD , background = 'white')
-output.grid ( row = 7 , column = 6 , columnspan = 2 , sticky = W )
+output.grid ( row = 4 , column = 0 , columnspan = 4 , sticky = W )
 s1 = 'Please select one of the below options:\n-teams\n-runs\n-wickets'
 output.insert(END, s1)
 
