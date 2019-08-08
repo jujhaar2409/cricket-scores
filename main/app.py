@@ -164,7 +164,7 @@ def click2():
 		# plt.title(entered_text)
 
 		# # Limits for the Y axis
-		plt.ylim(0, max(height)*6/5)
+		#plt.ylim(0, max(height)*6/5)
 
 		# # Create names
 		plt.xticks(y_pos, bars)
@@ -243,7 +243,7 @@ text.grid(row = 1, column = 1,columnspan = 2, sticky = N)
 Button(window , text = 'TABLE',width = 20 , command = click1). grid (row = 3, column  = 1, sticky = E)
 Button(window , text = 'GRAPH',width = 20 , command = click2). grid (row = 3, column  = 2, sticky = W)
 
-output = Text(window, width = 60 , height = 10 , wrap = WORD , background = 'white')
+output = Text(window, width = 60, height = 15 , wrap = WORD , background = 'white')
 output.grid ( row = 4 , column = 0 , columnspan = 4 , sticky = W )
 s1 = 'Please select one of the below options:\n-teams\n-runs\n-wickets'
 output.insert(END, s1)
