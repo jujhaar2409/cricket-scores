@@ -76,9 +76,11 @@ def click1():
 	def teams_sort(data):
 		data.sort_values("POINTS", axis = 0, ascending = False, inplace = True, na_position ='last')
 		return (data.to_string(index=False))
+
 	def runs_sort(data):
 		data.sort_values("RUNS", axis = 0, ascending = False, inplace = True, na_position ='last')
 		return (data.to_string(index=False))
+
 	def wickets_sort(data):
 		data.sort_values("WICKETS", axis = 0, ascending = False, inplace = True, na_position ='last')
 		return (data.to_string(index=False))
@@ -145,9 +147,6 @@ def click1():
 
 	output.insert(END,s1)
 
-
-#todo : Complete CLick2 function to show pyplot graphs
-
 def click2():
 	def graph_(x, y, xl, yl):
 		# # libraries
@@ -177,14 +176,18 @@ def click2():
 		data.sort_values("POINTS", axis=0, ascending=False,
 		                 inplace=True, na_position='last')
 		return (data.to_string(index=False))
+
 	def runs_sort(data):
 		data.sort_values("RUNS", axis = 0, ascending = False, inplace = True, na_position ='last')
 		return (data.to_string(index=False))
+
 	def wickets_sort(data):
 		data.sort_values("WICKETS", axis = 0, ascending = False, inplace = True, na_position ='last')
 		return (data.to_string(index=False))
+
 	y = []
 	x = []
+
 	dir = dir = os.path.dirname(__file__)
 	runs_ = pd.ExcelFile(os.path.join(dir, 'runs.xlsx'))
 	wickets_ = pd.ExcelFile(os.path.join(dir,'wickets.xlsx'))
@@ -200,26 +203,34 @@ def click2():
 	if entered_text == 'runs':
 		data = runs_sort(runs)
 		data = data.split('\n')
+
 		for i in range(1,len(data)):
 			l = data[i].split()
 			x.append(l[0])
 			y.append(l[1])
+
 		graph_(x, y, 'Players', 'Runs')
+
 	elif entered_text == 'wickets':
 		data = wickets_sort(wickets)
 		data = data.split('\n')
+
 		for i in range(1,len(data)):
 			l = data[i].split()
 			x.append(l[0])
 			y.append(l[1])
+
 		graph_(x, y, 'Players', 'Wickets')
+
 	elif entered_text == 'teams':
 		data = teams_sort(teams)
 		data = data.split('\n')
+
 		for i in range(1,len(data)):
 			l = data[i].split()
 			x.append(l[0])
 			y.append(l[1])
+
 		graph_(x,y,'Teams','Points')
 
 
@@ -238,14 +249,21 @@ def click2():
 # 		Label(window, text=' Please give some other input ', fg='black', bg='white', font='ariel').grid(row=8 , column=3, sticky=W)
 
 Label (window, text = 'Welcome to the Cricket score board' ,fg = 'black',bg = 'white', font = 'ariel' ).grid(row = 0 , column = 0, columnspan = 4 , sticky= N )
+
 text = Entry(window , width = 20 , bg = 'light gray')
+
 text.grid(row = 1, column = 1,columnspan = 2, sticky = N)
+
 Button(window , text = 'TABLE',width = 20 , command = click1). grid (row = 3, column  = 1, sticky = E)
+
 Button(window , text = 'GRAPH',width = 20 , command = click2). grid (row = 3, column  = 2, sticky = W)
 
 output = Text(window, width = 60, height = 15 , wrap = WORD , background = 'white')
+
 output.grid ( row = 4 , column = 0 , columnspan = 4 , sticky = W )
+
 s1 = 'Please select one of the below options:\n-teams\n-runs\n-wickets'
+
 output.insert(END, s1)
 
 window.mainloop()
