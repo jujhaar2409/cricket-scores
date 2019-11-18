@@ -3,7 +3,6 @@ from tkinter import *
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
 
 window = Tk()
 window.title('Cricket Scores')
