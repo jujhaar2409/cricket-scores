@@ -1,0 +1,2 @@
+teams_               runs_                        wickets_                              players                  runs           wickets wins    teams          matches
+TEAM,POINTS,WON,LOST|PLAYERS,RUNS,MATCHES,AVERAGE|PLAYERS,WICKETS,MATCHES,WICKETS/MATCH|Virat,Rohit,Dhoni,Dhawan|100,150,128,40|5,1,4,1|1,2,1,0|RCB,MI,CSK,SRH|2,3,2,1
