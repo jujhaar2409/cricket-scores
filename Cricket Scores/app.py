@@ -6,7 +6,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 window = Tk()
+
 window.title('Cricket Scores')
+
 window.configure(background = 'white')
 
 def click3():
@@ -14,6 +16,7 @@ def click3():
 	def click4(entered_text):				
 	
 		if entered_text.lower() == 'vk':
+				
 				myfile = open(r"players/virat_kohli.txt",'r')
 				x = myfile.read()
 				playerpage = Toplevel()
@@ -23,6 +26,7 @@ def click3():
 				myfile.close()                        
 				
 		elif entered_text.lower() == 'msd':
+				
 				myfile=open(r"players/MS_Dhoni.txt",'r')
 				x=myfile.read()
 				playerpage=Toplevel()
@@ -32,6 +36,7 @@ def click3():
 				myfile.close()
 				
 		elif entered_text.lower() =='sd':
+				
 				myfile=open(r"players/Shikhar_Dhawan.txt",'r')
 				x=myfile.read()
 				playerpage=Toplevel()
@@ -41,6 +46,7 @@ def click3():
 				myfile.close()
 
 		elif entered_text.lower() =='gg':
+				
 				myfile=open(r"players/Gautam_Gambhir.txt",'r')
 				x=myfile.read()
 				playerpage=Toplevel()
@@ -50,6 +56,7 @@ def click3():
 				myfile.close()
 
 		elif entered_text.lower() =='kd':
+				
 				myfile=open(r"players/Kapil_Dev.txt",'r')
 				x=myfile.read()
 				playerpage=Toplevel()
@@ -59,6 +66,7 @@ def click3():
 				myfile.close()
 
 		elif entered_text.lower() =='st':
+				
 				myfile=open(r"players/Sachin_Tendulkar.txt",'r')
 				x=myfile.read()
 				playerpage=Toplevel()
@@ -102,29 +110,38 @@ def click1():#sort button
 	dir = os.path.dirname(__file__)
 
 	def teams_sort(data):
+		
 		data.sort_values("POINTS", axis = 0, ascending = False, inplace = True, na_position ='last')
 		return (data.to_string(index=False))
 
 	def runs_sort(data):
+		
 		data.sort_values("RUNS", axis = 0, ascending = False, inplace = True, na_position ='last')
 		return (data.to_string(index=False))
 
 	def wickets_sort(data):
+		
 		data.sort_values("WICKETS", axis = 0, ascending = False, inplace = True, na_position ='last')
 		return (data.to_string(index=False))
 
 	entered_text = variable.get()
+	
 	output.delete(0.0, END)
+	
 	s1 = ''
 
 	# Import the excel file and call it xls_file
 	runs_ = pd.ExcelFile(os.path.join(dir, 'runs.xlsx'))
+	
 	wickets_ = pd.ExcelFile(os.path.join(dir,'wickets.xlsx'))
+	
 	teams_ = pd.ExcelFile(os.path.join(dir,'teams.xlsx'))
 
 	# Load the excel_file's Sheet1 as a dataframe
 	teams = teams_.parse('Sheet1')
+	
 	wickets = wickets_.parse('Sheet1')
+	
 	runs = runs_.parse('Sheet1')
 
 	if entered_text == 'runs':
@@ -150,6 +167,7 @@ def click1():#sort button
 	output.insert(END,s1)
 
 def click2():#graph
+	
 	def graph_(x, y, xl, yl):
 		# # libraries
 
@@ -175,15 +193,18 @@ def click2():#graph
 		plt.show()
 
 	def teams_sort(data):
+		
 		data.sort_values("POINTS", axis=0, ascending=False,
 						 inplace=True, na_position='last')
 		return (data.to_string(index=False))
 
 	def runs_sort(data):
+		
 		data.sort_values("RUNS", axis = 0, ascending = False, inplace = True, na_position ='last')
 		return (data.to_string(index=False))
 
 	def wickets_sort(data):
+		
 		data.sort_values("WICKETS", axis = 0, ascending = False, inplace = True, na_position ='last')
 		return (data.to_string(index=False))
 
@@ -191,22 +212,29 @@ def click2():#graph
 	x = []
 
 	dir = dir = os.path.dirname(__file__)
+	
 	runs_ = pd.ExcelFile(os.path.join(dir, 'runs.xlsx'))
+	
 	wickets_ = pd.ExcelFile(os.path.join(dir,'wickets.xlsx'))
+	
 	teams_ = pd.ExcelFile(os.path.join(dir,'teams.xlsx'))
 
 	# Load the excel_file's Sheet1 as a dataframe
 	teams = teams_.parse('Sheet1')
+	
 	wickets = wickets_.parse('Sheet1')
+	
 	runs = runs_.parse('Sheet1')
 
 	entered_text = variable.get()
 
 	if entered_text == 'runs':
+		
 		data = runs_sort(runs)
 		data = data.split('\n')
 
 		for i in range(1,len(data)):
+			
 			l = data[i].split()
 			x.append(l[0])
 			y.append(l[1])
@@ -214,10 +242,12 @@ def click2():#graph
 		graph_(x, y, 'Players', 'Runs')
 
 	elif entered_text == 'wickets':
+		
 		data = wickets_sort(wickets)
 		data = data.split('\n')
 
 		for i in range(1,len(data)):
+			
 			l = data[i].split()
 			x.append(l[0])
 			y.append(l[1])
@@ -225,10 +255,12 @@ def click2():#graph
 		graph_(x, y, 'Players', 'Wickets')
 
 	elif entered_text == 'teams':
+		
 		data = teams_sort(teams)
 		data = data.split('\n')
 
 		for i in range(1,len(data)):
+			
 			l = data[i].split()
 			x.append(l[0])
 			y.append(l[1])
