@@ -286,9 +286,11 @@ Button(window , text = 'GRAPH',width = 20 , command = click2). grid (row = 2, co
 
 Button(window , text = 'PLAYER DETAILS',width = 20 , command = click3). grid (row = 3, column  = 2, sticky = S)
 
-output = Text(window, width = 57, height = 15 , wrap = WORD , background = 'white')
+output = Text(window, width = 57, height = 12 , wrap = WORD , background = 'white')
 
-output.grid ( row = 5, column = 1, columnspan = 3, sticky = N )
+output.grid ( row = 5, column = 1, columnspan = 3, sticky = N)
+
+output.config(font = ('consolas','11'), background = 'white', insertontime = 0)
 
 w = OptionMenu(window, variable, *OPTIONS)
 
@@ -296,7 +298,7 @@ w.config(width = 18)
 
 w.grid(row=2,column=1,sticky=W )
 
-s1 = '-Select one of the options from the drop down list \n-Click "TABLE" to see the points table on the basis of       field chosen\n-Click GRAPH to see a pictorial representation of the feild  chosen\n-To veiw the details of player click PLAYER DETAILS'
+s1 = '-Select one of the options from the drop down list\n\n-Click "TABLE" to see the points table on the basis of field chosen\n\n-Click GRAPH to see a pictorial representation of the feild  chosen\n\n-To veiw the details of player click PLAYER DETAILS'
 
 output.insert(END, s1)
 
