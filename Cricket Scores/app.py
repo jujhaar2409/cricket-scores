@@ -131,11 +131,11 @@ def click1():#sort button
 	s1 = ''
 
 	# Import the excel file and call it xls_file
-	runs_ = pd.ExcelFile(os.path.join(dir, 'runs.xlsx'))
+	runs_ = pd.ExcelFile(os.path.join(dir, 'excel_files/runs.xlsx'))
 	
-	wickets_ = pd.ExcelFile(os.path.join(dir,'wickets.xlsx'))
+	wickets_ = pd.ExcelFile(os.path.join(dir,'excel_files/wickets.xlsx'))
 	
-	teams_ = pd.ExcelFile(os.path.join(dir,'teams.xlsx'))
+	teams_ = pd.ExcelFile(os.path.join(dir,'excel_files/teams.xlsx'))
 
 	# Load the excel_file's Sheet1 as a dataframe
 	teams = teams_.parse('Sheet1')
