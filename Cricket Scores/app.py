@@ -213,11 +213,11 @@ def click2():#graph
 
 	dir = dir = os.path.dirname(__file__)
 	
-	runs_ = pd.ExcelFile(os.path.join(dir, 'runs.xlsx'))
+	runs_ = pd.ExcelFile(os.path.join(dir, 'excel_files/runs.xlsx'))
 	
-	wickets_ = pd.ExcelFile(os.path.join(dir,'wickets.xlsx'))
+	wickets_ = pd.ExcelFile(os.path.join(dir,'excel_files/wickets.xlsx'))
 	
-	teams_ = pd.ExcelFile(os.path.join(dir,'teams.xlsx'))
+	teams_ = pd.ExcelFile(os.path.join(dir,'excel_files/teams.xlsx'))
 
 	# Load the excel_file's Sheet1 as a dataframe
 	teams = teams_.parse('Sheet1')
